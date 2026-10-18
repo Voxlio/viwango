@@ -33,11 +33,11 @@ interface RequestState {
  * Design rules that drove the structure:
  *  - the previous result stays visible while a new one loads (no white flash),
  *  - every failure produces a readable sentence, never a raw stack or code,
- *  - nothing is fetched until the user asks, except one initial XAUUSD/H1 load,
+ *  - nothing is fetched until the user asks, except one initial BTCUSD/H1 load,
  *  - a superseded request can never overwrite a newer one.
  */
 export function LevelsApp() {
-  const [symbol, setSymbol] = useState('XAUUSD');
+  const [symbol, setSymbol] = useState('BTCUSD');
   const [timeframe, setTimeframe] = useState<Timeframe>('H1');
   const [confluence, setConfluence] = useState(true);
   const [state, setState] = useState<RequestState>({
@@ -120,7 +120,7 @@ export function LevelsApp() {
 
   // One initial load so the page is never empty on arrival.
   useEffect(() => {
-    void load('XAUUSD', 'H1', true);
+    void load('BTCUSD', 'H1', true);
     return () => abortRef.current?.abort();
   }, [load]);
 
