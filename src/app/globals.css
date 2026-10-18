@@ -1,0 +1,103 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+ * VIWANGO visual language, taken from the reference screens:
+ *   - near-black canvas with a faint purple/green glow bleeding in from the edges
+ *   - large, slightly tight display type in two tones (white + grey)
+ *   - cards that read as dark glass: 1px white border at low opacity, big radius
+ *   - pill controls with a coloured dot and a thin outline
+ */
+
+:root {
+  color-scheme: dark;
+}
+
+html {
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  /* Two soft light sources, exactly like the reference: violet top-right,
+     green lower-left. Fixed so it does not scroll away from the content. */
+  background-color: #07070a;
+  background-image:
+    radial-gradient(900px 600px at 100% -10%, rgba(88, 60, 160, 0.28), transparent 62%),
+    radial-gradient(700px 500px at -15% 108%, rgba(20, 120, 90, 0.16), transparent 60%);
+  background-attachment: fixed;
+}
+
+@layer components {
+  .glass {
+    @apply rounded-card border border-white/10 bg-white/[0.035] shadow-glass backdrop-blur-[2px];
+  }
+
+  .glass-tight {
+    @apply rounded-2xl border border-white/10 bg-white/[0.04];
+  }
+
+  .pill {
+    @apply inline-flex items-center gap-2 rounded-pill border border-white/[0.12] px-3.5 py-1.5 text-[13px] font-medium text-white/75 transition-colors;
+  }
+
+  .pill:hover {
+    @apply border-white/25 text-white;
+  }
+
+  .pill-active {
+    @apply border-white/35 bg-white/[0.09] text-white;
+  }
+
+  .pill-dot {
+    @apply h-1.5 w-1.5 rounded-full;
+  }
+
+  .label {
+    @apply text-[11px] font-medium uppercase tracking-[0.14em] text-muted;
+  }
+
+  .display {
+    @apply font-display font-semibold tracking-[-0.03em] leading-[0.95];
+  }
+
+  /* Focus ring that works on dark glass without screaming. */
+  .focus-ring {
+    @apply outline-none focus-visible:ring-2 focus-visible:ring-white/40 focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950;
+  }
+
+  .skeleton {
+    background: linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.04) 25%,
+      rgba(255, 255, 255, 0.09) 37%,
+      rgba(255, 255, 255, 0.04) 63%
+    );
+    background-size: 200% 100%;
+    @apply animate-shimmer rounded-lg;
+  }
+}
+
+/* Lightweight-charts injects its own canvas: strip the default focus outline. */
+.tv-lightweight-charts canvas:focus {
+  outline: none;
+}
+
+/* Thin, unobtrusive scrollbars in the symbol suggestions. */
+.thin-scroll::-webkit-scrollbar {
+  width: 6px;
+}
+.thin-scroll::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 999px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
