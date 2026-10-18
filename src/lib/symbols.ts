@@ -107,6 +107,15 @@ export const SYMBOLS: readonly SymbolConfig[] = [
     dataSource: 'twelve-data',
     pricePrecision: 2,
   },
+  { symbol: 'SOLUSD', name: 'Solana / US Dollar', kind: 'crypto', dataSource: 'crypto', pricePrecision: 2 },
+  { symbol: 'LTCUSD', name: 'Litecoin / US Dollar', kind: 'crypto', dataSource: 'crypto', pricePrecision: 2 },
+  { symbol: 'XRPUSD', name: 'XRP / US Dollar', kind: 'crypto', dataSource: 'crypto', pricePrecision: 4 },
+  { symbol: 'ADAUSD', name: 'Cardano / US Dollar', kind: 'crypto', dataSource: 'crypto', pricePrecision: 4 },
+  { symbol: 'LINKUSD', name: 'Chainlink / US Dollar', kind: 'crypto', dataSource: 'crypto', pricePrecision: 3 },
+  { symbol: 'AVAXUSD', name: 'Avalanche / US Dollar', kind: 'crypto', dataSource: 'crypto', pricePrecision: 2 },
+  { symbol: 'DOTUSD', name: 'Polkadot / US Dollar', kind: 'crypto', dataSource: 'crypto', pricePrecision: 3 },
+  { symbol: 'BCHUSD', name: 'Bitcoin Cash / US Dollar', kind: 'crypto', dataSource: 'crypto', pricePrecision: 2 },
+  { symbol: 'ATOMUSD', name: 'Cosmos / US Dollar', kind: 'crypto', dataSource: 'crypto', pricePrecision: 3 },
 ] as const;
 
 /** Case-insensitive lookup by canonical symbol. */
